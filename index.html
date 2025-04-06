@@ -1,356 +1,259 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asel - Lost My CTRL (Burgundy)</title>
-    <style>
-        body {
-            background-color: #EFE8DD;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        .cart-icon {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            font-size: 24px;
-            color: black;
-            cursor: pointer;
-            z-index: 100;
-            background-color: #EFE8DD;
-            padding: 5px 10px;
-            border-radius: 50%;
-        }
-        .cart-badge {
-            background-color: red;
-            color: white;
-            font-size: 14px;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            display: none;
-        }
-        .product-container {
-            display: flex;
-            max-width: 1200px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            gap: 40px;
-        }
-        .product-gallery {
-            flex: 1;
-        }
-        .main-image {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .thumbnail-container {
-            display: flex;
-            gap: 10px;
-        }
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            border-radius: 5px;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        .thumbnail.active {
-            border-color: #000;
-        }
-        .product-details {
-            flex: 1;
-            padding: 20px;
-        }
-        .product-title {
-            font-size: 28px;
-            margin: 0 0 10px 0;
-        }
-        .rating {
-            color: gold;
-            font-size: 20px;
-            margin: 10px 0;
-        }
-        .price {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-        .original-price {
-            text-decoration: line-through;
-            color: #999;
-            font-size: 18px;
-            margin-right: 10px;
-        }
-        .discount {
-            color: red;
-            font-size: 18px;
-            background-color: #ffeeee;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-        .color-section, .size-section {
-            margin: 25px 0;
-        }
-        .section-title {
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 18px;
-        }
-        .color-options, .size-options {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid transparent;
-            position: relative;
-        }
-        .color-option.selected {
-            border-color: #000;
-        }
-        .color-option.selected::after {
-            content: "✓";
-            color: white;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
-            text-shadow: 0 0 3px #000;
-        }
-        .size-option {
-            padding: 10px 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            min-width: 40px;
-            text-align: center;
-        }
-        .size-option.selected {
-            border: 2px solid #000;
-            background-color: #f0f0f0;
-        }
-        .size-option.unavailable {
-            color: #ccc;
-            text-decoration: line-through;
-            cursor: not-allowed;
-        }
-        .quantity-section {
-            margin: 30px 0;
-        }
-        .quantity-control {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .quantity-btn {
-            padding: 5px 15px;
-            border: 1px solid #ddd;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .quantity-value {
-            font-size: 18px;
-            width: 50px;
-            text-align: center;
-        }
-        .action-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-top: 40px;
-        }
-        .add-to-cart, .buy-now {
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .add-to-cart {
-            background-color: #000;
-            color: white;
-        }
-        .add-to-cart:hover {
-            background-color: #333;
-        }
-        .buy-now {
-            background-color: #f0f0f0;
-            color: #000;
-            border: 1px solid #000;
-        }
-        .buy-now:hover {
-            background-color: #e0e0e0;
-        }
-        .ask-question {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .product-description {
-            margin-top: 30px;
-            line-height: 1.6;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo img {
+      width: 150px;
+      height: auto;
+    }
+
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 20px;
+      direction: rtl;
+    }
+
+    .product-card {
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 15px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slider-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      border-radius: 10px;
+    }
+
+    .slider-container img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .slider-button.prev {
+      right: 5px;
+    }
+
+    .slider-button.next {
+      left: 5px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    .product-price {
+      font-size: 16px;
+      color: #00d5ff;
+      margin-bottom: 10px;
+    }
+
+    .buy-button {
+      background-color: #00b7ff;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .buy-button:hover {
+      background-color: #00cc7a;
+      transform: scale(1.05);
+    }
+
+    
+    /* إيقاف الأنماط الافتراضية للرابط */
+    a {
+      text-decoration: none; /* إزالة الخط تحت الرابط */
+      color: inherit; /* الاحتفاظ بنفس اللون */
+      display: block;
+    }
+    
+  </style>
 </head>
 <body>
+  <div class="logo">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\photo_2025-04-06_13-14-21.jpg" alt="شعار الموقع">
+  </div>
 
-    <div class="cart-icon">
-        🛒 <span class="cart-badge">0</span>
+  <div class="products-container">
+
+    <!-- البطاقة 1 -->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\1.jpg" class="active" alt="صورة 1">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\2.jpg" alt="صورة 2">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\3.jpg" alt="صورة 3">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\4.jpg" alt="صورة 3">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\5.jpg" alt="صورة 3">
+      </div>
+      <a href=C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\web-brod\p1.html class="product-name">منتج 1</a> <!-- رابط إلى صفحة تفاصيل المنتج -->
+      <div class="product-name">سماعة ايربود</div>
+      <div class="product-price">15,000 IQD</div>
+      <button class="buy-button">إضافة إلى السلة</button>
     </div>
 
-    <div class="product-container">
-        <!-- معرض الصور -->
-        <div class="product-gallery">
-            <img id="mainImage" src="https://via.placeholder.com/600x800/b8860b/ffffff?text=Lost+My+CTRL" alt="Lost My CTRL (Burgundy)" class="main-image">
-            <div class="thumbnail-container">
-                <img src="C:\Users\MR.Rich\Downloads\o.img" alt="Front View" class="thumbnail active" onclick="changeImage(this)">
-                <img src="C:\Users\MR.Rich\Downloads\o.img" alt="Back View" class="thumbnail" onclick="changeImage(this)">
-                <img src="C:\Users\MR.Rich\Downloads\o.img" alt="Side View" class="thumbnail" onclick="changeImage(this)">
-                <img src="https://via.placeholder.com/100x100/a52a2a/ffffff?text=Detail" alt="Detail View" class="thumbnail" onclick="changeImage(this)">
-            </div>
-        </div>
-
-        <!-- تفاصيل المنتج -->
-        <div class="product-details">
-            <h1 class="product-title">Hode black</h1>
-            <div class="price">
-                IQD 699.00
-            </div>
-
-            <!-- خيارات الحجم -->
-            <div class="size-section">
-                <div class="section-title">الحجم:</div>
-                <div class="size-options">
-                    <div class="size-option" onclick="selectSize(this)">S</div>
-                    <div class="size-option" onclick="selectSize(this)">M</div>
-                    <div class="size-option selected" onclick="selectSize(this)">L</div>
-                    <div class="size-option" onclick="selectSize(this)">XL</div>
-                    <div class="size-option unavailable" onclick="selectSize(this)">XXL</div>
-                </div>
-            </div>
-
-            <!-- الكمية -->
-            <div class="quantity-section">
-                <div class="section-title">الكمية:</div>
-                <div class="quantity-control">
-                    <div class="quantity-btn" onclick="changeQuantity(-1)">-</div>
-                    <div class="quantity-value">1</div>
-                    <div class="quantity-btn" onclick="changeQuantity(1)">+</div>
-                </div>
-            </div>
-
-            <!-- أزرار الشراء -->
-            <div class="action-buttons">
-                <button class="add-to-cart" onclick="addToCart()">أضف إلى السلة - IQD 699.00</button>
-                <button class="buy-now" onclick="buyNow()">اشتري الآن</button>
-            </div>
-
-            <div class="ask-question">اسأل سؤالاً</div>
-
-            <!-- وصف المنتج -->
-            <div class="product-description">
-                <h3>وصف المنتج:</h3>
-                <p>تيشيرت Lost My CTRL مصنوع من قماش قطني عالي الجودة بنسبة 100% لراحة máxima. تصميم عصري مع طباعة عالية الجودة تدوم طويلاً. مناسب للارتداء اليومي أو المناسبات الخاصة.</p>
-                <p>✓ 100% قطن ✓ طباعة عالية الجودة ✓ حياكة متينة ✓ غسيل آمن ✓ تصميم عصري</p>
-            </div>
-        </div>
+    <!-- البطاقة 2 -->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_3_2025-04-06_14-25-02.jpg" class="active" alt="صورة 1">
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_2_2025-04-06_14-25-02.jpg" alt="صورة 2">
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_8_2025-04-06_14-25-02.jpg" alt="صورة 3">
+      </div>
+      <a href="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\web-brod\p1.html" class="product-name">منفاخ هواء</a>
+      <div class="product-price">20,000 دينار عراقي</div>
+      <button class="buy-button">إضافة إلى السلة</button>
     </div>
+    <!--منتج ثالث-->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="C:/path/to/image1.jpg" class="active" alt="صورة 1">
+        <img src="C:/path/to/image2.jpg" alt="صورة 2">
+        <img src="C:/path/to/image3.jpg" alt="صورة 3">
+      </div>
+      <div class="product-name">منتج 2</div>
+      <div class="product-price">20,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منتج 2', 20000)">إضافة إلى السلة</button>
+    </div>
+    <!--المنتج الرابع-->
+    <div class="product-card">
+  <div class="slider-container">
+    <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+    <button class="slider-button next" onclick="nextImage(this)">❯</button>
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\1.jpg" class="active" alt="صورة 1">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\2.jpg" alt="صورة 2">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\3.jpg" alt="صورة 3">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\4.jpg" alt="صورة 3">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\5.jpg" alt="صورة 3">
+  </div>
+  <div class="product-name">سماعة ايربود</div>
+  <div class="product-price">15,000 IQD</div>
+  <button class="buy-button" onclick="addToCart('منتج 2', 20000)">إضافة إلى السلة</button>
+    </div>
+    <!-- يمكن إضافة المزيد من المنتجات هنا باستخدام نفس البنية -->
 
-    <script>
-        let cartCount = 0;
-        let currentQuantity = 1;
-        let selectedColor = "Burgundy";
-        let selectedSize = "L";
-        let productPrice = 699.00;
+  </div>
 
-        // تغيير الصورة الرئيسية عند النقر على الصور المصغرة
-        function changeImage(thumbnail) {
-            document.querySelectorAll('.thumbnail').forEach(img => {
-                img.classList.remove('active');
-            });
-            thumbnail.classList.add('active');
-            document.getElementById('mainImage').src = thumbnail.src.replace('100x100', '600x800');
-        }
+  <div id="cart">
+    <h2>سلة التسوق</h2>
+    <ul id="cart-items"></ul>
+    <div id="cart-total"></div>
+  </div>
 
+  <script>
+    let cart = [];
 
-        // اختيار الحجم
-        function selectSize(sizeOption) {
-            if (sizeOption.classList.contains('unavailable')) return;
-            
-            document.querySelectorAll('.size-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            sizeOption.classList.add('selected');
-            selectedSize = sizeOption.textContent;
-        }
+    function addToCart(productName, productPrice) {
+      // إضافة المنتج إلى السلة
+      cart.push({ name: productName, price: productPrice });
 
-        // تغيير الكمية
-        function changeQuantity(change) {
-            if (change > 0 && currentQuantity < 10) {
-                currentQuantity++;
-            } else if (change < 0 && currentQuantity > 1) {
-                currentQuantity--;
-            }
-            document.querySelector('.quantity-value').textContent = currentQuantity;
-            updateAddToCartButton();
-        }
+      // تحديث عرض السلة
+      updateCart();
 
-        // تحديث سعر زر الإضافة إلى السلة
-        function updateAddToCartButton() {
-            const totalPrice = (productPrice * currentQuantity).toFixed(2);
-            document.querySelector('.add-to-cart').textContent = `أضف إلى السلة - IQD ${totalPrice}`;
-        }
+      // رسالة تأكيد بعد إضافة المنتج
+      alert(`${productName} تمت إضافته إلى السلة`);
+    }
 
-        // إضافة إلى السلة
-        function addToCart() {
-            cartCount += currentQuantity;
-            const cartBadge = document.querySelector('.cart-badge');
-            cartBadge.textContent = cartCount;
-            cartBadge.style.display = "flex";
-            
-            const totalPrice = (productPrice * currentQuantity).toFixed(2);
-            alert(`تمت إضافة ${currentQuantity} من المنتج (اللون: ${selectedColor}, الحجم: ${selectedSize}) إلى السلة بمبلغ إجمالي IQD ${totalPrice}`);
-        }
+    function updateCart() {
+      const cartItemsContainer = document.getElementById('cart-items');
+      const cartTotalContainer = document.getElementById('cart-total');
+      cartItemsContainer.innerHTML = ''; // مسح العناصر القديمة من السلة
 
-        // شراء الآن
-        function buyNow() {
-            const totalPrice = (productPrice * currentQuantity).toFixed(2);
-            alert(`سيتم توجيهك لصفحة الدفع لشراء ${currentQuantity} من المنتج (اللون: ${selectedColor}, الحجم: ${selectedSize}) بمبلغ إجمالي IQD ${totalPrice}`);
-        }
-    </script>
+      let total = 0;
 
+      cart.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = `${item.name} - ${item.price} IQD`;
+        cartItemsContainer.appendChild(listItem);
+        total += item.price;
+      });
+
+      cartTotalContainer.textContent = `المجموع: ${total} IQD`;
+    }
+
+    function nextImage(button) {
+      const container = button.parentElement;
+      const images = container.querySelectorAll('img');
+      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[currentIndex].classList.remove('active');
+      const nextIndex = (currentIndex + 1) % images.length;
+      images[nextIndex].classList.add('active');
+    }
+
+    function prevImage(button) {
+      const container = button.parentElement;
+      const images = container.querySelectorAll('img');
+      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[currentIndex].classList.remove('active');
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      images[prevIndex].classList.add('active');
+    }
+  </script>
+  
 </body>
 </html>
