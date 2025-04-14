@@ -237,7 +237,28 @@
     .floating-error.show {
       top: 30px;
     }
+    .back-button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #00b7ff;
+  color: #000;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.back-button:hover {
+  background-color: #00cc7a;
+  transform: scale(1.05);
+}
+
   </style>
+  <button class="back-button" onclick="goBack()">رجوع</button>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -535,7 +556,9 @@
           }
         }
       });
-      
+      function goBack() {
+  window.history.back();
+      }     
       // تحديث السلة عند تحميل الصفحة
       updateCart();
     });
