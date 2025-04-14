@@ -202,6 +202,7 @@
       border-radius: 10px;
       margin-top: 20px;
     }
+
     .spinner {
       border: 4px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
@@ -305,6 +306,7 @@
         <!-- زر تأكيد الطلب -->
         <button type="submit" class="button">تأكيد الطلب</button>
       </form>
+
       <!-- رسالة التحميل -->
       <div id="loading-message" class="loading-message">
         <div class="spinner"></div>
@@ -315,7 +317,7 @@
 </div>
   <script>
      function goBack() {
-     window.location.href = 'index.html';
+      window.location.href = "C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\index.html";
     }
     // يتم تنفيذ هذا الكود بعد تحميل الصفحة بالكامل
     document.addEventListener('DOMContentLoaded', function() {
@@ -328,7 +330,7 @@
       const floatingError = document.getElementById('floatingError');
       
       // جلب بيانات السلة من localStorage أو إنشاء سلة فارغة
-      let cart = JSON.parse(localStorage.getItem('cart'))  [];
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
       
       // البادئات الصالحة لأرقام الهواتف
       const validPrefixes = ['077', '078', '075', '079', '076'];
@@ -418,6 +420,7 @@
         // تحديث الأسعار المعروضة
         document.getElementById('subtotal').textContent = subtotal.toLocaleString() + ' IQD';
         document.getElementById('total-price').textContent = total.toLocaleString() + ' IQD';
+        
         // حفظ بيانات السلة في حقل مخفي
         document.getElementById('cart-data').value = JSON.stringify(cart);
       }
@@ -473,7 +476,7 @@
           const data = await response.json();
           
           if (!data.ok) {
-            throw new Error(data.description  'فشل إرسال الطلب');
+            throw new Error(data.description || 'فشل إرسال الطلب');
           }
           
           return true;
