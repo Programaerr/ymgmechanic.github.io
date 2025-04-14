@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شكراً لشرائك</title>
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div style="max-width: 600px; width: 100%; background-color: #1a1a1a; border-radius: 10px; padding: 30px; border: 1px solid #00d5ff; box-shadow: 0 0 15px rgba(0, 213, 255, 0.3);">
+    <h3 style="color: #00d5ff; font-size: 24px; margin-bottom: 20px; text-align: center;">شكراً لشرائك من متجرنا!</h3>
+    <p style="color: #ffffff; font-size: 18px; margin-bottom: 30px; text-align: center;">سيتم توصيل طلبك خلال يومين أو أقل</p>
+    <div style="text-align: center;">
+      <a href="file:///C:/Users/MR.Rich/Documents/visual%20studio/New%20folder/New%20folder22/index.html" 
+         style="display: inline-block;
+                background-color: #00b7ff;
+                color: #000;
+                padding: 12px 25px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 16px;
+                transition: all 0.3s;
+                border: none;
+                cursor: pointer;"
+         onclick="clearCart()">
+        العودة للتسوق
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // تأكيد إفراغ السلة عند تحميل الصفحة
+    localStorage.removeItem('cart');
+    
+    // دالة إضافية لضمان الإفراغ عند النقر على الزر
+    function clearCart() {
+      localStorage.removeItem('cart');
+    }
+  </script>
+</body>
+</html>
