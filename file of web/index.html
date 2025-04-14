@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>سلة التسوق</title>
   <style>
     body {
       background-color: #000000;
@@ -12,208 +11,312 @@
       color: white;
       font-family: Arial, sans-serif;
     }
-    
-    .back-button {
+
+    .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo img {
+      margin-top: 10px;
+      width: 150px;
+      height: auto;
+    }
+
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 20px;
+      direction: rtl;
+    }
+
+    .product-card {
+      background-color: #1a1a1a;
+      border: 1px solid #444;
+      border-radius: 15px;
+      padding: 15px;
+      width: 250px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slider-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      border-radius: 10px;
+    }
+
+    .slider-container img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slider-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      z-index: 2;
+    }
+
+    .slider-button.prev {
+      right: 5px;
+    }
+
+    .slider-button.next {
+      left: 5px;
+    }
+
+    .product-name {
+      font-size: 18px;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    .product-price {
+      font-size: 16px;
+      color: #00d5ff;
+      margin-bottom: 10px;
+    }
+
+    .buy-button {
       background-color: #00b7ff;
       color: #000;
       border: none;
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      margin-bottom: 20px;
-      transition: background-color 0.3s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      transition: background-color 0.3s, transform 0.2s;
     }
-    
-    .back-button:hover {
+
+    .buy-button:hover {
       background-color: #00cc7a;
+      transform: scale(1.05);
     }
-    
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
-    
-    .cart-items {
-      margin-top: 20px;
-    }
-    
-    .cart-item {
+    .cart-icon {
       background-color: #1a1a1a;
       border: 1px solid #444;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .item-info {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-    
-    .item-image {
+      border-radius: 50%;
       width: 60px;
       height: 60px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    
-    .item-name {
-      font-weight: bold;
-    }
-    
-    .item-price {
-      color: #00d5ff;
-    }
-    
-    .item-quantity {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    
-    .quantity-btn {
-      background-color: #333;
-      color: white;
-      border: none;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
-    
-    .total {
-      font-size: 20px;
+    .cart-controls {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+    }
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #ff0000;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
       font-weight: bold;
-      margin-top: 20px;
-      color: #00d5ff;
-      text-align: left;
+    }
+    #messages-container {
+      position: fixed;
+      top: 20px;
+      right: 50%;
+      transform: translateX(50%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
-    .checkout-btn {
+    .message-item {
       background-color: #00b7ff;
       color: #000;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 8px;
-      cursor: pointer;
+      padding: 12px 20px;
+      border-radius: 15px;
       font-weight: bold;
-      margin-top: 20px;
-      width: 100%;
-      transition: background-color 0.3s;
-    }
-    
-    .checkout-btn:hover {
-      background-color: #00cc7a;
-    }
-    
-    .empty-cart {
+      box-shadow: 0 0 15px rgba(0, 183, 255, 0.5);
+      margin-bottom: 10px;
+      transition: all 0.5s ease;
+      opacity: 1;
+      transform: translateY(0);
+      max-width: 300px;
       text-align: center;
-      margin-top: 50px;
-      font-size: 18px;
+    }
+    
+    .message-item.fade-out {
+      transform: translateY(20px);
+      opacity: 0;
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div class="cart-header">
-    <h1>سلة التسوق</h1>
-    <button class="back-button" onclick="goBack()">
-      <i class="fas fa-arrow-right"></i> العودة إلى المتجر
-    </button>
+  <div id="messages-container"></div>
+
+  <div class="cart-controls">
+    <div class="cart-icon" onclick="goToCheckout()">
+      <i class="fas fa-shopping-cart"></i>
+      <div class="cart-count" id="cart-count">0</div>
+    </div>
   </div>
-  
-  <div class="cart-items" id="cart-items">
-    <!-- سيتم ملء العناصر هنا بواسطة JavaScript -->
+
+  <div class="logo">
+    <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\rt.png" alt="شعار الموقع">
   </div>
-  
-  <div class="total" id="total-price">
-    المجموع: 0 دينار عراقي
+
+  <div class="products-container">
+    <!-- البطاقة 1 -->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\1.jpg" class="active" alt="صورة 1">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\2.jpg" alt="صورة 2">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\3.jpg" alt="صورة 3">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\4.jpg" alt="صورة 3">
+        <img src="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\imge\m\5.jpg" alt="صورة 3">
+      </div>
+      <a href="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\web-brod\p1.html" class="product-name">تفاصيل المنتج</a>
+      <div class="product-name">سماعة ايربود</div>
+      <div class="product-price">15,000 IQD</div>
+      <button class="buy-button" onclick="addToCart('سماعة ايربود', 15000)">إضافة إلى السلة</button>
+    </div>
+    
+    <!-- البطاقة 2 -->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_3_2025-04-06_14-25-02.jpg" class="active" alt="صورة 1">
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_2_2025-04-06_14-25-02.jpg" alt="صورة 2">
+        <img src="C:\Users\MR.Rich\Downloads\Telegram Desktop\photo_8_2025-04-06_14-25-02.jpg" alt="صورة 3">
+      </div>
+      <a href="C:\Users\MR.Rich\Documents\visual studio\New folder\New folder22\web-brod\p2.html" class="product-name">منفاخ هواء</a>
+      <div class="product-price">20,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منفاخ هواء', 20000)">إضافة إلى السلة</button>
+    </div>
+    
+    <!-- باقي المنتجات -->
   </div>
-  
-  <button class="checkout-btn" onclick="proceedToCheckout()">
-    إتمام الشراء
-  </button>
-  
+
   <script>
-    function goBack() {
-      window.location.href = 'index.html';
+    let cart = [];
+    let messageCounter = 0;
+
+    function addToCart(productName, productPrice) {
+      cart.push({ name: productName, price: productPrice });
+      updateCart();
+      showFloatingMessage(`تمت إضافة ${productName} إلى السلة`);
     }
-    
-    function proceedToCheckout() {
-      alert('سيتم تنفيذ عملية الدفع هنا');
-      // يمكنك إضافة منطق الدفع هنا
+
+    function updateCart() {
+      const cartCount = document.getElementById('cart-count');
+      cartCount.textContent = cart.length;
+      localStorage.setItem('cart', JSON.stringify(cart));
     }
-    
-    function updateQuantity(productName, change) {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const productIndex = cart.findIndex(item => item.name === productName);
+
+    function showFloatingMessage(message) {
+      messageCounter++;
+      const container = document.getElementById('messages-container');
+      const messageElement = document.createElement('div');
+      messageElement.className = 'message-item';
+      messageElement.textContent = message;
+      messageElement.id = `message-${messageCounter}`;
       
-      if (productIndex !== -1) {
-        cart[productIndex].quantity += change;
-        
-        if (cart[productIndex].quantity <= 0) {
-          cart.splice(productIndex, 1);
+      container.appendChild(messageElement);
+      
+      const allMessages = container.querySelectorAll('.message-item');
+      allMessages.forEach((msg, index) => {
+        if (msg.id !== `message-${messageCounter}`) {
+          msg.style.transform = `translateY(-${(allMessages.length - index - 1) * 60}px)`;
         }
-        
-        localStorage.setItem('cart', JSON.stringify(cart));
-        renderCartItems();
-      }
-    }
-    
-    function renderCartItems() {
-      const cart = JSON.parse(localStorage.getItem('cart')) || [];
-      const cartItemsContainer = document.getElementById('cart-items');
-      const totalPriceElement = document.getElementById('total-price');
-      
-      if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<div class="empty-cart">السلة فارغة</div>';
-        totalPriceElement.textContent = 'المجموع: 0 دينار عراقي';
-        return;
-      }
-      
-      let total = 0;
-      cartItemsContainer.innerHTML = '';
-      
-      cart.forEach(item => {
-        total += item.price * item.quantity;
-        
-        const itemElement = document.createElement('div');
-        itemElement.className = 'cart-item';
-        itemElement.innerHTML = `
-          <div class="item-info">
-            <img src="${item.image}" alt="${item.name}" class="item-image">
-            <div>
-              <div class="item-name">${item.name}</div>
-              <div class="item-price">${item.price.toLocaleString()} دينار عراقي</div>
-            </div>
-          </div>
-          <div class="item-quantity">
-            <button class="quantity-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
-            <span>${item.quantity}</span>
-            <button class="quantity-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
-          </div>
-        `;
-        
-        cartItemsContainer.appendChild(itemElement);
       });
       
-      totalPriceElement.textContent = `المجموع: ${total.toLocaleString()} دينار عراقي`;
+      setTimeout(() => {
+        messageElement.classList.add('fade-out');
+        setTimeout(() => {
+          messageElement.remove();
+        }, 500);
+      }, 3000);
     }
-    
-    document.addEventListener('DOMContentLoaded', renderCartItems);
+
+    function goToCheckout() {
+      if (cart.length === 0) {
+        showFloatingMessage('السلة فارغة، أضف منتجات أولاً');
+        return;
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.href = 'cart.html';
+    }
+
+    function nextImage(button) {
+      const container = button.parentElement;
+      const images = container.querySelectorAll('img');
+      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[currentIndex].classList.remove('active');
+      const nextIndex = (currentIndex + 1) % images.length;
+      images[nextIndex].classList.add('active');
+    }
+
+    function prevImage(button) {
+      const container = button.parentElement;
+      const images = container.querySelectorAll('img');
+      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
+      images[currentIndex].classList.remove('active');
+      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      images[prevIndex].classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const savedCart = localStorage.getItem('cart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+      }
+    });
   </script>
 </body>
 </html>
