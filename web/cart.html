@@ -260,9 +260,8 @@
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
    <button class="back-button" onclick="goToHome()">رجوع</button>
-
+<body>
   <!-- رسالة الخطأ العائمة -->
   <div id="floatingError" class="floating-error"></div>
 
@@ -547,7 +546,7 @@
             localStorage.removeItem('cart');
             
             // الانتقال إلى صفحة الشكر
-            window.location.href = "web/thanks.html";
+           window.location.href = '/ymgmechanic/thanks.html';
           } else {
             // إخفاء رسالة التحميل
             loadingMessage.style.display = 'none';
