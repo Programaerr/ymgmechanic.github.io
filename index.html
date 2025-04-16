@@ -350,6 +350,10 @@
         cart = JSON.parse(savedCart);
         updateCart();
       }
+      if (!sessionStorage.getItem("reloaded")) {
+    sessionStorage.setItem("reloaded", "true");
+    window.location.reload();
+      }
     });
   </script>
 </body>
