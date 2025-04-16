@@ -204,20 +204,18 @@
   </div>
 
   <div class="logo">
-    <img src="rt.png" alt="شعار الموقع">
-  </div>
-
+    <img src="https://programaerr.github.io/ymgmechanic/rt.png" alt="شعاري">
   <div class="products-container">
     <!-- البطاقة 1 -->
     <div class="product-card">
       <div class="slider-container">
         <button class="slider-button prev" onclick="prevImage(this)">❮</button>
         <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="imgs/1.jpg" class="active" alt="صورة 1">
-        <img src="imgs/2.jpg" alt="صورة 2">
-        <img src="imgs/3.jpg" alt="صورة 3">
-        <img src="imgs/4.jpg" alt="صورة 3">
-        <img src="imgs/5.jpg" alt="صورة 3">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/1.jpg" class="active" alt="صورة 1">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/2.jpg" alt="صورة 2">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/3.jpg" alt="صورة 4">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/4.jpg" alt="صورة 5">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/5.jpg" alt="صورة 6">
       </div>
       <a href="p1.html" class="product-name">تفاصيل المنتج</a>
       <div class="product-name">سماعة ايربود</div>
@@ -230,16 +228,48 @@
       <div class="slider-container">
         <button class="slider-button prev" onclick="prevImage(this)">❮</button>
         <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="imgs/12.jpg" class="active" alt="صورة 1">
-        <img src="imgs/13.jpg" alt="صورة 2">
-        <img src="imgs/14.jpg" alt="صورة 3">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/12.jpg" class="active" alt="صورة 1">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/13.jpg" alt="صورة 2">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/14.jpg" alt="صورة 3">
       </div>
       <a href="web/p2.html" class="product-name">منفاخ هواء</a>
       <div class="product-price">20,000 دينار عراقي</div>
       <button class="buy-button" onclick="addToCart('منفاخ هواء', 20000)">إضافة إلى السلة</button>
     </div>
-    
+
+    <!--المنتج الثالث-->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m1.jpg" class="active" alt="صورة 1">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m2.jpg" alt="صورة 2">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m3.jpg" alt="صورة 3">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m4.jpg" alt="صورة 4">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m5.jpg" alt="صورة 5">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m6.jpg" alt="صورة 6">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/m7.jpg" alt="صورة 7">
+      </div>
+      <a href="web/p2.html" class="product-name">منفاخ هواء</a>
+      <div class="product-price">20,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منفاخ هواء', 20000)">إضافة إلى السلة</button>
+    </div>
+
     <!-- باقي المنتجات -->
+     <!--المنتج الرابع-->
+    <div class="product-card">
+      <div class="slider-container">
+        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
+        <button class="slider-button next" onclick="nextImage(this)">❯</button>
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/12.jpg" class="active" alt="صورة 1">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/13.jpg" alt="صورة 2">
+        <img src="https://programaerr.github.io/ymgmechanic/imgs/14.jpg" alt="صورة 3">
+      </div>
+      <a href="web/p2.html" class="product-name">منفاخ هواء</a>
+      <div class="product-price">20,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منفاخ هواء', 20000)">إضافة إلى السلة</button>
+    </div>
+
   </div>
 
   <script>
@@ -289,7 +319,7 @@
         return;
       }
       localStorage.setItem('cart', JSON.stringify(cart));
-      window.location.href = 'web/cart.html';
+      window.location.href = 'cart.html';
     }
 
     function nextImage(button) {
