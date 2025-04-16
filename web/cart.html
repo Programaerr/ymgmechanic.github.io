@@ -339,7 +339,7 @@
 </div>
   <script>
       function goToHome() {
-  window.location.href = 'index.html'; // غيّر هذا حسب اسم صفحتك الرئيسية
+  window.location.href = "index.html"; // غيّر هذا حسب اسم صفحتك الرئيسية
 }
     // يتم تنفيذ هذا الكود بعد تحميل الصفحة بالكامل
     document.addEventListener('DOMContentLoaded', function() {
@@ -547,7 +547,7 @@
             localStorage.removeItem('cart');
             
             // الانتقال إلى صفحة الشكر
-            window.location.href = 'thanks.html';
+            window.location.href = 'web/thanks.html';
           } else {
             // إخفاء رسالة التحميل
             loadingMessage.style.display = 'none';
@@ -557,10 +557,6 @@
           }
         }
       });
-  /*function relodpage() {
-  window.location.href = 'thanks.html';  // الانتقال إلى الصفحة الرئيسية وإعادة تحميلها
-}*/
-
       // تحديث السلة عند تحميل الصفحة
       updateCart();
     });
