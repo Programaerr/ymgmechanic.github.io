@@ -344,11 +344,11 @@
       images[prevIndex].classList.add('active');
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('pageshow', function () {
       const savedCart = localStorage.getItem('cart');
       if (savedCart) {
-        cart = JSON.parse(savedCart);
-        updateCart();
+    cart = JSON.parse(savedCart);
+    updateCart();
       }
       if (!sessionStorage.getItem("reloaded")) {
     sessionStorage.setItem("reloaded", "true");
