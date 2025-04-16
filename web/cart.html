@@ -258,11 +258,11 @@
 }
 
   </style>
-  <button class="back-button" onclick="goBack()">رجوع</button>
+  <button class="back-button" onclick="goToHome()">رجوع</button>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <button onclick="goToHome()">🔙 العودة إلى الصفحة الرئيسية</button>
+  <button onclick="goToHome()">رجوع</button>
 
   <!-- رسالة الخطأ العائمة -->
   <div id="floatingError" class="floating-error"></div>
@@ -561,9 +561,9 @@
           }
         }
       });
-  function reloadPage() {
+  /*function reloadPage() {
   window.location.href = 'web/thanks.html';  // الانتقال إلى الصفحة الرئيسية وإعادة تحميلها
-}
+}*/
 
       // تحديث السلة عند تحميل الصفحة
       updateCart();
