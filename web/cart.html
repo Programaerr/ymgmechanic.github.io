@@ -339,9 +339,12 @@
   </div>
 </div>
   <script>
-     function goBack() {
+     /*function goBack() {
       window.location.href = "index.html";
-    }
+    }*/
+      function goToHome() {
+  window.location.href = "index.html"; // غيّر هذا حسب اسم صفحتك الرئيسية
+}
     // يتم تنفيذ هذا الكود بعد تحميل الصفحة بالكامل
     document.addEventListener('DOMContentLoaded', function() {
       // جلب عناصر DOM المهمة
@@ -557,9 +560,6 @@
             showError('حدث خطأ أثناء إرسال الطلب، يرجى المحاولة مرة أخرى');
           }
         }
-      function goToHome() {
-  window.location.href = "index.html"; // غيّر هذا حسب اسم صفحتك الرئيسية
-}
       });
   function reloadPage() {
   window.location.href = 'web/thanks.html';  // الانتقال إلى الصفحة الرئيسية وإعادة تحميلها
