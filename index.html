@@ -117,21 +117,6 @@
       color: #00d5ff;
       margin-bottom: 10px;
     }
-    @media (max-width: 768px) {
-    main {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 10px;
-    }
-
-    main .card {
-      width: calc(50% - 10px); /* بطاقتان مع فراغ */
-      box-sizing: border-box;
-    }
-  }
-
     .buy-button {
       background-color: #00b7ff;
       color: #000;
@@ -215,6 +200,20 @@
     .message-item.fade-out {
       transform: translateY(20px);
       opacity: 0;
+    }
+    @media (max-width: 768px) {
+  main {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+  }
+
+  main .card {
+    width: calc(50% - 10px) !important;
+    box-sizing: border-box !important;
+    margin-bottom: 10px !important;
+  }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
