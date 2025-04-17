@@ -376,10 +376,12 @@
       images[prevIndex].classList.add('active');
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('pageshow', function () {
   const savedCart = localStorage.getItem('cart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
+  } else {
+    cart =[];
   }
   updateCart();
 });
