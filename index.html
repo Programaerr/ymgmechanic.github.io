@@ -1,93 +1,96 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="Cache-Control" content="max-age=86400">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>متجر إلكتروني</title>
   <style>
+    /* تنسيقات السلة والمحتوى العام */
     body {
-      background-color: #000000;
-      margin: 0;
-      padding: 20px;
-      color: white;
       font-family: Arial, sans-serif;
-    }
-    .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  padding: 10px;
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 10%;
-    }
-
-    .logo img {
-      margin-top: 20px;
-      width: 250px;
-      height: auto;
-    }
-
-    .products-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 30px;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
       direction: rtl;
-      margin-top: 95px;
     }
-  .container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
 
-  .card {
-    flex: 0 1 calc(50% - 10px);
-    box-sizing: border-box;
-  }
+    header {
+      background-color: #333;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+    }
+
     .product-card {
-      background-color: #1a1a1a;
-      border: 1px solid #444;
-      border-radius: 10px;
-      padding: 15px;
-      width: 250px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-    }
-
-    .product-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-    }
-
-    .slider-container {
-      position: relative;
-      width: 100%;
-      height: 200px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      border-radius: 10px;
+      margin: 15px;
+      text-align: center;
     }
 
-    .slider-container img {
+    .product-card img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-name {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    .product-price {
+      color: green;
+      font-size: 1.1em;
+      margin: 10px 0;
+    }
+
+    .buy-button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .buy-button:hover {
+      background-color: #218838;
+    }
+
+    .product-slider {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .product-slider img {
       position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
       transition: opacity 0.5s ease;
-      border-radius: 10px;
+      opacity: 0;
     }
 
-    .slider-container img.active {
+    .product-slider img.active {
       opacity: 1;
-      z-index: 1;
     }
 
     .slider-button {
@@ -95,279 +98,150 @@
       top: 50%;
       transform: translateY(-50%);
       background-color: rgba(0, 0, 0, 0.5);
-      border: none;
       color: white;
-      font-size: 18px;
+      padding: 10px;
+      border: none;
       cursor: pointer;
-      padding: 5px 10px;
-      border-radius: 5px;
-      z-index: 2;
     }
 
     .slider-button.prev {
-      right: 5px;
+      left: 10px;
     }
 
     .slider-button.next {
-      left: 5px;
+      right: 10px;
     }
 
-    .product-name {
-      font-size: 18px;
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-
-    .product-price {
-      font-size: 16px;
-      color: #00d5ff;
-      margin-bottom: 10px;
-    }
-    .buy-button {
-      background-color: #00b7ff;
-      color: #000;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-
-    .buy-button:hover {
-      background-color: #00cc7a;
-      transform: scale(1.05);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-    }
-    .cart-icon {
-      background-color: #1a1a1a;
-      border: 1px solid #444;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-    .cart-controls {
+    .messages-container {
       position: fixed;
-      top: 20px;
-      left: 20px;
+      top: 10px;
+      right: 10px;
+      width: 300px;
       z-index: 1000;
     }
-    .cart-count {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: #ff0000;
-      color: white;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      font-weight: bold;
-    }
-    #messages-container {
-      position: fixed;
-      top: 20px;
-      right: 50%;
-      transform: translateX(50%);
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    
+
     .message-item {
-      background-color: #00b7ff;
-      color: #000;
-      padding: 12px 20px;
-      border-radius: 15px;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(0, 183, 255, 0.5);
-      margin-bottom: 10px;
-      transition: all 0.5s ease;
-      opacity: 1;
-      transform: translateY(0);
-      max-width: 300px;
-      text-align: center;
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 5px;
+      transition: opacity 0.5s ease;
     }
-    
+
     .message-item.fade-out {
-      transform: translateY(20px);
       opacity: 0;
     }
+
+    #cart-count {
+      font-size: 1.2em;
+      background-color: red;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-weight: bold;
+    }
   </style>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <div id="messages-container"></div>
-
-  <div class="cart-controls">
-    <div class="cart-icon" onclick="goToCheckout()">
-      <i class="fas fa-shopping-cart"></i>
-      <div class="cart-count" id="cart-count">0</div>
+  <header>
+    <h1>متجر إلكتروني</h1>
+    <div>
+      <button onclick="goToCheckout()">الذهاب إلى السلة</button>
+      <span id="cart-count">0</span>
     </div>
-  </div>
+  </header>
 
-  <div class="logo">
-    <img src="https://programaerr.github.io/ymg/rt.png" alt="شعاري">
-  <div class="products-container">
-    <!-- البطاقة 1 -->
-    <div class="product-card">
-      <div class="slider-container">
-        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
-        <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="https://programaerr.github.io/ymg/imgs/1.jpg" class="active" alt="صورة 1">
-        <img src="https://programaerr.github.io/ymg/imgs/2.jpg" alt="صورة 2">
-        <img src="https://programaerr.github.io/ymg/imgs/3.jpg" alt="صورة 4">
-        <img src="https://programaerr.github.io/ymg/imgs/4.jpg" alt="صورة 5">
-        <img src="https://programaerr.github.io/ymg/imgs/5.jpg" alt="صورة 6">
-      </div>
-      <a href="p1.html" class="product-name">تفاصيل المنتج</a>
-      <div class="product-name">سماعة ايربود</div>
-      <div class="product-price">15,000 IQD</div>
-      <button class="buy-button" onclick="addToCart('سماعة ايربود', 15000)">إضافة إلى السلة</button>
-    </div>
-    
-    <!-- البطاقة 2 -->
-    <div class="product-card">
-      <div class="slider-container">
-        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
-        <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="https://programaerr.github.io/ymg/imgs/12.jpg" class="active" alt="صورة 1">
-        <img src="https://programaerr.github.io/ymg/imgs/13.jpg" alt="صورة 2">
-        <img src="https://programaerr.github.io/ymg/imgs/14.jpg" alt="صورة 3">
-      </div>
-      <a href="web/p2.html" class="product-name">منفاخ هواء</a>
-      <div class="product-price">20,000 دينار عراقي</div>
-      <button class="buy-button" onclick="addToCart('منفاخ هواء', 20000)">إضافة إلى السلة</button>
-    </div>
+  <div class="messages-container" id="messages-container"></div>
 
-    <!--المنتج الثالث-->
+  <div class="container">
     <div class="product-card">
-      <div class="slider-container">
-        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
-        <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="https://programaerr.github.io/ymg/imgs/m3.png" class="active" alt="صورة 1">
+      <div class="product-slider">
+        <img src="https://programaerr.github.io/ymg/imgs/m1.png" alt="صورة 1" class="active">
         <img src="https://programaerr.github.io/ymg/imgs/m2.png" alt="صورة 2">
-        <img src="https://programaerr.github.io/ymg/imgs/m1.png" alt="صورة 3">
-        <img src="https://programaerr.github.io/ymg/imgs/m4.png" alt="صورة 4">
-        <img src="https://programaerr.github.io/ymg/imgs/m5.png" alt="صورة 5">
-        <img src="https://programaerr.github.io/ymg/imgs/m6.png" alt="صورة 6">
-        <img src="https://programaerr.github.io/ymg/imgs/m7.png" alt="صورة 7">
+        <button class="slider-button prev" onclick="prevImage(this)">&#10094;</button>
+        <button class="slider-button next" onclick="nextImage(this)">&#10095;</button>
       </div>
-      <a href="web/p2.html" class="product-name">مصباح عمل شحن</a>
-      <div class="product-price">20,000 دينار عراقي</div>
-      <button class="buy-button" onclick="addToCart('مصباح عمل شحن', 20000)">إضافة إلى السلة</button>
+      <a href="web/p1.html" class="product-name">منتج 1</a>
+      <div class="product-price">10,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منتج 1', 10000)">إضافة إلى السلة</button>
     </div>
 
-    <!-- باقي المنتجات -->
-     <!--المنتج الرابع-->
     <div class="product-card">
-      <div class="slider-container">
-        <button class="slider-button prev" onclick="prevImage(this)">❮</button>
-        <button class="slider-button next" onclick="nextImage(this)">❯</button>
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_013655_105_0.png" class="active" alt="صورة 1">
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_014056_530_1.png" alt="صورة 2">
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_014058_256_2.png" alt="صورة 3">
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_014101_713_4.png" alt="صورة 4">
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_014103_241_5.png" alt="صورة 5">
-        <img src="https://programaerr.github.io/ymg/imgs/بور/PRODUCT_20250417_014104_548_6.png" alt="صورة 6">
+      <div class="product-slider">
+        <img src="https://programaerr.github.io/ymg/imgs/m1.png" alt="صورة 1" class="active">
+        <img src="https://programaerr.github.io/ymg/imgs/m2.png" alt="صورة 2">
+        <button class="slider-button prev" onclick="prevImage(this)">&#10094;</button>
+        <button class="slider-button next" onclick="nextImage(this)">&#10095;</button>
       </div>
-      <a href="web/p2.html" class="product-name">باور بانك موكسوم2</a>
-      <div class="product-price">25,000 دينار عراقي</div>
-      <button class="buy-button" onclick="addToCart('باور بانك موسكوم2', 25000)">إضافة إلى السلة</button>
+      <a href="web/p2.html" class="product-name">منتج 2</a>
+      <div class="product-price">15,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منتج 2', 15000)">إضافة إلى السلة</button>
     </div>
 
+    <div class="product-card">
+      <div class="product-slider">
+        <img src="https://programaerr.github.io/ymg/imgs/m1.png" alt="صورة 1" class="active">
+        <img src="https://programaerr.github.io/ymg/imgs/m2.png" alt="صورة 2">
+        <button class="slider-button prev" onclick="prevImage(this)">&#10094;</button>
+        <button class="slider-button next" onclick="nextImage(this)">&#10095;</button>
+      </div>
+      <a href="web/p3.html" class="product-name">منفاخ هواء محمول</a>
+      <div class="product-price">25,000 دينار عراقي</div>
+      <button class="buy-button" onclick="addToCart('منفاخ هواء محمول', 25000)">إضافة إلى السلة</button>
+    </div>
   </div>
 
   <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let messageCounter = 0;
+    let cart = [];
 
-    function addToCart(productName, productPrice) {
-      cart.push({ name: productName, price: productPrice });
-      localStorage.setItem('cart', JSON.stringify(cart)); // حفظ السلة في التخزين المحلي
-  updateCart();
-  showFloatingMessage(`تمت إضافة ${productName} إلى السلة`);
+    function addToCart(productName, price) {
+      cart.push({ name: productName, price: price });
+      document.getElementById('cart-count').innerText = cart.length;
+      showMessage(`${productName} تم إضافته إلى السلة`);
     }
 
-    function updateCart() {
-      const cartCount = document.getElementById('cart-count');
-      cartCount.textContent = cart.length;
-      localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    function showFloatingMessage(message) {
-      messageCounter++;
-      const container = document.getElementById('messages-container');
+    function showMessage(message) {
+      const messagesContainer = document.getElementById('messages-container');
       const messageElement = document.createElement('div');
-      messageElement.className = 'message-item';
+      messageElement.classList.add('message-item');
       messageElement.textContent = message;
-      messageElement.id = `message-${messageCounter}`;
-      
-      container.appendChild(messageElement);
-      
-      const allMessages = container.querySelectorAll('.message-item');
-      allMessages.forEach((msg, index) => {
-        if (msg.id !== `message-${messageCounter}`) {
-          msg.style.transform = `translateY(-${(allMessages.length - index - 1) * 60}px)`;
-        }
-      });
-      
+      messagesContainer.appendChild(messageElement);
+
       setTimeout(() => {
         messageElement.classList.add('fade-out');
         setTimeout(() => {
-          messageElement.remove();
+          messagesContainer.removeChild(messageElement);
         }, 500);
       }, 3000);
     }
 
     function goToCheckout() {
-      if (cart.length === 0) {
-        showFloatingMessage('السلة فارغة، أضف منتجات أولاً');
-        return;
-      }
-      localStorage.setItem('cart', JSON.stringify(cart));
-      window.location.href = 'web/cart.html';
+      alert("انتقل إلى صفحة الدفع");
     }
 
     function nextImage(button) {
-      const container = button.parentElement;
-      const images = container.querySelectorAll('img');
-      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-      images[currentIndex].classList.remove('active');
-      const nextIndex = (currentIndex + 1) % images.length;
+      const sliderContainer = button.closest('.product-slider');
+      const images = sliderContainer.querySelectorAll('img');
+      const activeImage = sliderContainer.querySelector('.active');
+      let nextIndex = [...images].indexOf(activeImage) + 1;
+      if (nextIndex >= images.length) nextIndex = 0;
+      activeImage.classList.remove('active');
       images[nextIndex].classList.add('active');
     }
 
     function prevImage(button) {
-      const container = button.parentElement;
-      const images = container.querySelectorAll('img');
-      let currentIndex = Array.from(images).findIndex(img => img.classList.contains('active'));
-      images[currentIndex].classList.remove('active');
-      const prevIndex = (currentIndex - 1 + images.length) % images.length;
+      const sliderContainer = button.closest('.product-slider');
+      const images = sliderContainer.querySelectorAll('img');
+      const activeImage = sliderContainer.querySelector('.active');
+      let prevIndex = [...images].indexOf(activeImage) - 1;
+      if (prevIndex < 0) prevIndex = images.length - 1;
+      activeImage.classList.remove('active');
       images[prevIndex].classList.add('active');
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-  const savedCart = localStorage.getItem('cart');
-  if (savedCart) {
-    cart = JSON.parse(savedCart);
-  }
-  updateCart();
-});
   </script>
 </body>
 </html>
