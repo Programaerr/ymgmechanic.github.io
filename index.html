@@ -117,6 +117,19 @@
       color: #00d5ff;
       margin-bottom: 10px;
     }
+    @media (max-width: 768px) {
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  main .card {
+    flex: 0 1 calc(50% - 10px);
+    box-sizing: border-box;
+  }
+    }
 
     .buy-button {
       background-color: #00b7ff;
