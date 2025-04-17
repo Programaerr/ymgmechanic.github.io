@@ -48,6 +48,8 @@
   .card {
     flex: 0 1 calc(50% - 10px);
     box-sizing: border-box;
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
     .product-card {
       background-color: #1a1a1a;
@@ -58,12 +60,16 @@
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
       transition: transform 0.3s, box-shadow 0.3s;
       position: relative;
+      display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
     .product-card:hover {
       transform: scale(1.05);
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 
     .slider-container {
       position: relative;
