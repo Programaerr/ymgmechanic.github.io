@@ -13,10 +13,10 @@
       font-family: Arial, sans-serif;
     }
     .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 15px;
-  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* يجعل العناصر تتجمع في المنتصف أفقياً */
+  gap: 20px; /* مسافة بين المنتجات، اختياري */
 }
 
     .logo {
