@@ -376,7 +376,7 @@
       images[prevIndex].classList.add('active');
     }
 
-    document.addEventListener('pageshow', function () {
+    document.addEventListener('DOMContentLoaded', function () {
   const savedCart = localStorage.getItem('cart');
   if (savedCart) {
     cart = JSON.parse(savedCart);
