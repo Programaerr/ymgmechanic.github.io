@@ -14,11 +14,10 @@
     }
     .products {
   display: grid;
-  grid-auto-flow: row;
-  grid-auto-rows: minmax(150px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
   padding: 10px;
-    }
+}
 
     .logo {
       text-align: center;
@@ -51,17 +50,16 @@
     box-sizing: border-box;
   }
     .product-card {
-      background-color: #1a1a1a;
-      border: 1px solid #444;
-      border-radius: 10px;
-      padding: 15px;
-      width: 250px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  width: 100%; /* خليه يتمدد حسب العمود */
+  box-sizing: border-box;
+}
 
     .product-card:hover {
       transform: scale(1.05);
