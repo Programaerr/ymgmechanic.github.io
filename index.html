@@ -346,17 +346,13 @@
       images[prevIndex].classList.add('active');
     }
 
-    document.addEventListener('pageshow', function () {
-      const savedCart = localStorage.getItem('cart');
-      if (savedCart) {
+    document.addEventListener('DOMContentLoaded', function () {
+  const savedCart = localStorage.getItem('cart');
+  if (savedCart) {
     cart = JSON.parse(savedCart);
-    updateCart();
-      }
-      /*if (!sessionStorage.getItem("reloaded")) {
-    sessionStorage.setItem("reloaded", "true");
-    window.location.reload();
-      }*/
-    });
+  }
+  updateCart();
+});
   </script>
 </body>
 </html>
