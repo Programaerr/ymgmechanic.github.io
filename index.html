@@ -278,7 +278,7 @@
   </div>
 
   <script>
-    let cart = [];
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let messageCounter = 0;
 
     function addToCart(productName, productPrice) {
@@ -352,10 +352,10 @@
     cart = JSON.parse(savedCart);
     updateCart();
       }
-      if (!sessionStorage.getItem("reloaded")) {
+      /*if (!sessionStorage.getItem("reloaded")) {
     sessionStorage.setItem("reloaded", "true");
     window.location.reload();
-      }
+      }*/
     });
   </script>
 </body>
