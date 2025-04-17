@@ -12,11 +12,10 @@
       color: white;
       font-family: Arial, sans-serif;
     }
-    .products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center; /* يجعل العناصر تتجمع في المنتصف أفقياً */
-  gap: 20px; /* مسافة بين المنتجات، اختياري */
+    .product {
+  width: 45%;              /* عرض كل منتج */
+  box-sizing: border-box;  /* لضمان أن الحشوات والحدود لا تؤثر على العرض */
+  text-align: center;      /* لتوسيط النص داخل المنتج */
 }
 
     .logo {
@@ -31,13 +30,12 @@
     }
 
     .products-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      gap: 30px;
-      direction: rtl;
-      margin-top: 95px;
-    }
+  display: flex;
+  justify-content: center; /* لتوسيط العناصر أفقياً */
+  align-items: center;     /* لتوسيط العناصر عمودياً إذا لزم الأمر */
+  flex-wrap: wrap;         /* للسماح بتغليف العناصر عند الحاجة */
+  gap: 10px;               /* مسافة بين العناصر */
+}
   .container {
     display: flex;
     flex-wrap: wrap;
