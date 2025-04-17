@@ -377,13 +377,26 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-  const savedCart = localStorage.getItem('cart');
-  if (savedCart) {
-    cart = JSON.parse(savedCart);
-  } else {
-    cart =[];
-  }
-  updateCart();
+    const savedCart = localStorage.getItem('cart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    } else {
+        cart = [];
+    }
+    updateCart();
+});
+
+// هذا الحدث يتم تنفيذه عند الرجوع للصفحة من الكاش (مثل زر الرجوع أو الإيماءات)
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+        } else {
+            cart = [];
+        }
+        updateCart();
+    }
 });
   </script>
 </body>
