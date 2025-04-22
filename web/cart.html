@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تأكيد الطلب</title>
   <style>
+/* أزرار الكمية */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-right: 10px;
+}
+
+.quantity-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.quantity-btn:hover {
+  background-color: #00b7ff;
+}
+
+.quantity {
+  min-width: 20px;
+  text-align: center;
+}
     /* أنماط عامة للصفحة */
     body {
       background-color: #000000;
