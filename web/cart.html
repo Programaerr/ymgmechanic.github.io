@@ -469,25 +469,9 @@
         message += `📍 العنوان: ${address}\n\n`;
         message += `🛒 المنتجات:\n`;
         
-       cart.forEach((item, index) => {
-  const productItem = document.createElement('div');
-  productItem.className = 'product-item';
-  productItem.innerHTML = `
-    <div class="product-info">
-      <button class="delete-btn" data-index="${index}">✕</button>
-      <span class="product-name">${item.name}</span>
-    </div>
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <button class="qty-btn" data-index="${index}" data-action="decrease">-</button>
-      <span class="product-qty">${item.quantity || 1}</span>
-      <button class="qty-btn" data-index="${index}" data-action="increase">+</button>
-      <span class="product-price">${(item.price * (item.quantity || 1)).toLocaleString()} IQD</span>
-    </div>
-  `;
-  productsList.appendChild(productItem);
-  subtotal += item.price * (item.quantity || 1);
-});
-
+        cart.forEach((item, index) => {
+          message += `${index + 1}. ${item.name} - ${item.price.toLocaleString()} IQD\n`;
+        });
         
         const total = cart.reduce((sum, item) => sum + item.price, 0) + 5000;
         message += `\n💰 المجموع الكلي: ${total.toLocaleString()} IQD`;
@@ -574,30 +558,6 @@
       });
       // تحديث السلة عند تحميل الصفحة
       updateCart();
-      productsList.addEventListener('click', function(e) {
-  if (e.target.classList.contains('delete-btn')) {
-    const index = e.target.dataset.index;
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-  }
-
-  if (e.target.classList.contains('qty-btn')) {
-    const index = e.target.dataset.index;
-    const action = e.target.dataset.action;
-    cart[index].quantity = cart[index].quantity || 1;
-
-    if (action === 'increase') {
-      cart[index].quantity += 1;
-    } else if (action === 'decrease' && cart[index].quantity > 1) {
-      cart[index].quantity -= 1;
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCart();
-  }
-});
-
     });
   </script>
 </body>
