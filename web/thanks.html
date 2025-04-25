@@ -41,7 +41,7 @@
   </div>
 
   <script>
-    // حذف السلة عند تحميل الصفحة
+    // تفريغ السلة عند تحميل الصفحة
     localStorage.removeItem('cart');
 
     // منع الرجوع بزر المتصفح
@@ -50,12 +50,11 @@
       history.go(1);
     };
 
+    // دالة للانتقال للصفحة الرئيسية وتفريغ السلة
     function goHome() {
       localStorage.removeItem('cart');
-      // فتح الصفحة الرئيسية في تبويب جديد
-      window.open("https://programaerr.github.io/ymg/index.html", "_blank");
-      // إغلاق الصفحة الحالية
-      window.close();
+      // استخدام location.replace لضمان عدم الرجوع
+      location.replace("https://programaerr.github.io/ymg/index.html");
     }
   </script>
 </body>
