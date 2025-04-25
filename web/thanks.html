@@ -50,10 +50,12 @@
       history.go(1);
     };
 
-    // دالة العودة للرئيسية واستبدال الصفحة الحالية
     function goHome() {
       localStorage.removeItem('cart');
-      location.replace("https://programaerr.github.io/ymg/index.html");
+      // فتح الصفحة الرئيسية في تبويب جديد
+      window.open("https://programaerr.github.io/ymg/index.html", "_blank");
+      // إغلاق الصفحة الحالية
+      window.close();
     }
   </script>
 </body>
