@@ -23,8 +23,7 @@
     <h3 style="color: #00d5ff; font-size: 24px; margin-bottom: 20px; text-align: center;">شكراً لشرائك من متجرنا!</h3>
     <p style="color: #ffffff; font-size: 18px; margin-bottom: 30px; text-align: center;">سيتم توصيل طلبك خلال يومين أو أقل</p>
     <div style="text-align: center;">
-      <button 
-        onclick="goHome()" 
+      <button onclick="goHome()"
         style="display: inline-block;
                background-color: #00b7ff;
                color: #000;
@@ -42,24 +41,20 @@
   </div>
 
   <script>
-    // حذف السلة عند الدخول
+    // حذف السلة عند تحميل الصفحة
     localStorage.removeItem('cart');
 
-    function clearCart() {
-      localStorage.removeItem('cart');
-    }
-
-    // عند الضغط على العودة، احذف السلة وارجع للصفحة الرئيسية بدون حفظ الصفحة الحالية في التاريخ
-    function goHome() {
-      clearCart();
-      location.replace("https://programaerr.github.io/ymg/index.html");
-    }
-
-    // منع الرجوع للوراء بزر الرجوع في المتصفح
+    // منع الرجوع بزر المتصفح
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
       history.go(1);
     };
+
+    // دالة العودة للرئيسية واستبدال الصفحة الحالية
+    function goHome() {
+      localStorage.removeItem('cart');
+      location.replace("https://programaerr.github.io/ymg/index.html");
+    }
   </script>
 </body>
 </html>
