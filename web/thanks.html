@@ -44,17 +44,11 @@
     // تفريغ السلة عند تحميل الصفحة
     localStorage.removeItem('cart');
 
-    // منع الرجوع بزر المتصفح
-    history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-      history.go(1);
-    };
-
-    // دالة للانتقال للصفحة الرئيسية وتفريغ السلة
+    // دالة للانتقال للصفحة الرئيسية وفتحها في تبويب جديد
     function goHome() {
       localStorage.removeItem('cart');
-      // استخدام location.replace لضمان عدم الرجوع
-      location.replace("https://programaerr.github.io/ymg/index.html");
+      window.open("https://programaerr.github.io/ymg/index.html", "_blank");
+      window.close();
     }
   </script>
 </body>
