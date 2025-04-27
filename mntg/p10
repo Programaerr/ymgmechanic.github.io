@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 20px;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .product-details {
+      max-width: 800px;
+      margin: auto;
+      background-color: #1a1a1a;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    .product-details img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .product-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .product-price {
+      font-size: 22px;
+      color: #00d5ff;
+      margin: 10px 0;
+    }
+
+    .product-description {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .back-button {
+      background-color: #00b7ff;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #00cc7a;
+    }
+    @media (max-width: 768px) {
+  body {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .product-details {
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .product-name {
+    font-size: 20px;
+  }
+
+  .product-price {
+    font-size: 18px;
+  }
+
+  .product-description {
+    font-size: 14px;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px;
+  }
+    }
+  </style>
+</head>
+<body>
+  <div class="product-details">
+    <img src="https://programaerr.github.io/ymg/imgs/pro/1.jpg"alt="صورة المنتج">
+    <div class="product-name">سبيكر مضيء رائد فضاء</div>
+    <div class="product-price">20,000 IQD</div>
+    <div class="product-description">
+<ul>
+  <li>سبيكر مضيء رائد الفضاء</li>
+  <li>يتميز بثمانية أصوات للموسيقى الهادئة</li>
+  <li>يتميز بربط بلوتوث مدمج وسرعة الاتصال</li>
+  <li>متغير الألوان (أربعة ألوان أحادية) (ستة ألوان ثنائية) (أربعة ألوان ثلاثية)</li>
+  <li>يمكن تعديل السطوع من 10% إلى 60% إلى 100%</li>
+  <li>تأثيرات إضاءة رائعة ويحتوي على إضاءة النجوم والقمر</li>
+  <li>خاصية مؤقت مدمج لمدة ساعة إلى ساعتين</li>
+  <li>الوزن: 580 جرام</li>
+  <li>طول السلك الكهربائي: 1 متر</li>
+  <li>يعمل على الكهرباء عن طريق الكابل المرفق</li>
+  <li>الحجم: 120mm - 133mm - 228mm</li>
+</ul>
+    </div>
+    <button class="back-button" onclick="window.history.back()">العودة إلى الصفحة السابقة</button>
+  </div>
+</body>
+</html>
