@@ -41,13 +41,14 @@
   </div>
 
   <script>
-    // تفريغ السلة عند تحميل الصفحة
-    localStorage.removeItem('cart');
+  // تفريغ السلة عند تحميل الصفحة
+  localStorage.removeItem('cart');
 
-    // دالة للانتقال للصفحة الرئيسية وفتحها في تبويب جديد
-    function goHome() {
-      localStorage.removeItem('cart');window.location.href = 'index.html';
-    }
-  </script>
+  // دالة للانتقال للصفحة الرئيسية
+  function goHome() {
+    localStorage.removeItem('cart');
+    window.location.href = 'index.html';
+  }
+</script>
 </body>
 </html>
